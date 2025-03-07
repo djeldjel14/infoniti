@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats de Recherche</title>
+    <link rel="stylesheet" href="static/style2.css">
+</head>
+<body>
+
+    <div class="infoniti-brand">
+        <div class="infoniti-symbol">∞</div>
+        <div class="infoniti-text">Infoniti</div>
+    </div>
+
+    <h1>Résultats de la recherche</h1>
+
+    <div class="results">
+        {% if results %}
+            {% for fichier, score, extrait in results %}
+                <div class="result-item">
+                    <h3><a href="{{ url_for('afficher_document', nom_fichier=fichier) }}">{{ fichier }}</a></h3>
+                    <p>{{ extrait }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucun résultat trouvé.</p>
+        {% endif %}
+    </div>
+
+    <p class="execution-time">Temps d'exécution : {{ execution_time }} secondes</p>
+
+    <a href="/" class="back-link">&#x1F519; Retour à la recherche</a>
+
+</body>
+</html>

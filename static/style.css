@@ -1,0 +1,342 @@
+body {
+    margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            color: #333;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+input {
+    width: 400px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 24px;
+    outline: none;
+    transition: box-shadow 0.3s;
+}
+
+input:focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4285f4;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #357ae8;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 400px;
+    margin: 10px auto 0;
+    text-align: left;
+}
+
+li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li:hover {
+    background-color: #f0f0f0;
+}
+
+.no-results {
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+}
+.animated-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0) 70%);
+    animation: animateBackground 8s infinite alternate;
+    mix-blend-mode: overlay;
+}
+
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: transparent;
+}
+
+.stars div {
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkling 2s infinite alternate ease-in-out;
+}
+
+.stars div:nth-child(1) {
+    width: 4px;
+    height: 4px;
+    top: 20%;
+    left: 15%;
+    animation-delay: 0.2s;
+}
+
+.stars div:nth-child(2) {
+    width: 3px;
+    height: 3px;
+    top: 40%;
+    left: 60%;
+    animation-delay: 0.4s;
+}
+
+.stars div:nth-child(3) {
+    width: 5px;
+    height: 5px;
+    top: 70%;
+    left: 80%;
+    animation-delay: 0.6s;
+}
+
+.stars div:nth-child(4) {
+    width: 6px;
+    height: 6px;
+    top: 25%;
+    left: 75%;
+    animation-delay: 0.8s;
+}
+
+.stars div:nth-child(5) {
+    width: 2px;
+    height: 2px;
+    top: 55%;
+    left: 30%;
+    animation-delay: 1s;
+}
+
+@keyframes twinkling {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 56px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.letter {
+    display: inline-block;
+    transition: transform 0.4s ease, color 0.4s ease;
+    animation: bounce 1.5s infinite alternate;
+}
+
+.letter:hover {
+    transform: rotate(-10deg) scale(1.2);
+}
+
+.dot {
+    font-size: 12px;
+    vertical-align: super;
+    color: #FF6F61;
+}
+
+.I1 {
+    color: #FF6F61;
+}
+
+.n {
+    color: #6A0572;
+}
+
+.f {
+    color: #FFD700;
+}
+
+.o {
+    color: #009688;
+}
+
+.I2 {
+    color: #3F51B5;
+}
+
+.t {
+    color: #E91E63;
+}
+
+.i {
+    color: #FF9800;
+}
+
+.creative-touch {
+    margin-left: 15px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #ffffff;
+    font-style: italic;
+    animation: fadeIn 3s infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0));
+    z-index: -1;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.7;
+    }
+}
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.infinity-symbol {
+    font-size: 100px;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 215, 0, 0.6);
+    margin-bottom: 10px;
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 215, 0, 0.6);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 215, 0, 0.8);
+    }
+}
+
+.logo-text {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-form input {
+    width: 400px;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-form button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #0056b3;
+}

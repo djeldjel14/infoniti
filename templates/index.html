@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moteur de recherche avec suggestions en temps réel.">
+    <meta name="author" content="Votre Nom">
+    <title>Moteur de Recherche</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script>
+        function autocomplete() {
+            const query = document.getElementById("query").value.trim();
+
+            if (query.length < 2) {
+                document.getElementById("suggestions").innerHTML = "";
+                return;
+            }
+
+            fetch(`/autocomplete?q=${encodeURIComponent(query)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erreur lors de la récupération des suggestions");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.length === 0) {
+                        document.getElementById("suggestions").innerHTML = '<p class="no-results">Aucune suggestion trouvée.</p>';
+                        return;
+                    }
+
+                    const suggestions = data.map(word => 
+                        `<li onclick="selectWord('${word.replace(/'/g, "\\'")}')">${word}</li>`
+                    ).join('');
+
+                    document.getElementById("suggestions").innerHTML = `<ul>${suggestions}</ul>`;
+                })
+                .catch(error => {
+                    console.error("Erreur :", error);
+                });
+        }
+
+        function selectWord(word) {
+            document.getElementById("query").value = word;
+            document.getElementById("suggestions").innerHTML = "";
+        }
+    </script>
+</head>
+<body>
+
+    <div class="stars">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="animated-bg"></div>
+    <div class="logo">
+        <span class="letter I1">I</span>
+        <span class="letter n">n</span>
+        <span class="letter f">f</span>
+        <span class="letter o">o</span>
+        <span class="letter I2">n</span>
+        <span class="letter t">i</span>
+        <span class="letter i">t</span>
+        <span class="letter i">i</span>
+        <span class="dot">&#9679;</span>
+        <span class="creative-touch">Explore beyond boundaries</span>
+        <div class="halo"></div>
+    </div>
+    <div class="logo-container">
+        <div class="infinity-symbol">∞</div>
+        <div class="logo-text">Infoniti</div>
+    </div>
+    <div class="search-bar">
+        <form action="/" method="post" class="search-form">
+            <input type="text" id="query" name="query" onkeyup="autocomplete()" placeholder="Tapez votre requête..." autocomplete="off">
+            <button type="submit">Recherche Infoniti</button>
+        </form>
+    </div>
+        <div id="suggestions"></div>
+    </div>
+
+    <!-- Affichage des résultats -->
+    {% if results %}
+        <h2>Résultats de la recherche :</h2>
+        {% for fichier, score, extrait in results %}
+            <h3><a href="{{ url_for('afficher_document', nom_fichier=fichier) }}">{{ fichier }}</a></h3>
+            <p>{{ extrait }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Aucun résultat trouvé.</p>
+    {% endif %}
+
+    <p>Temps d'exécution : {{ execution_time }} secondes</p>
+
+</body>
+</html>
